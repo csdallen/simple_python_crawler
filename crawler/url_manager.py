@@ -16,8 +16,7 @@ class UrlManager(object):
     def add_new_url(self, url):
         """
         向URL管理器中添加一个URL
-        :param root_url:
-        :return:
+        :param url:
         """
 
         # 过滤空的URL
@@ -30,8 +29,7 @@ class UrlManager(object):
     def add_new_urls(self, urls):
         """
         向URL管理器中添加多个URL
-        :param new_urls:
-        :return:
+        :param urls:
         """
 
         # 过滤空的URL列表
@@ -43,7 +41,7 @@ class UrlManager(object):
     def has_new_url(self):
         """
         判断URL管理器中是否还有待处理的URL
-        :return:
+        :return: 如果URL管理器中还有待处理的URL，返回True，否则返回False
         """
 
         # 如果待处理URL集合不为空，说明还有要处理的URL，返回True
@@ -52,7 +50,7 @@ class UrlManager(object):
     def get_new_url(self):
         """
         从URL管理器中获取一个URL
-        :return:
+        :return:URL管理器中的一个URL
         """
 
         # 从待处理URL集合中取出一个URL并将其从集合中删除
