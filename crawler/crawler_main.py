@@ -48,7 +48,7 @@ class CrawlerMain:
                 # 收集数据
                 self.outputer.collect_data(new_data)
                 # 爬取足够数量的数据后结束爬取
-                if count == 1000:
+                if count == 100:
                     break
                 count += 1
             except:

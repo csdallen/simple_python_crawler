@@ -21,7 +21,7 @@ class HtmlParser(object):
         # 跳过空页面
         if url is None or content is None:
             return
-        # 设置要解析的内容、解析方式和内容编码
+        # 设置要解析的内容(网页源码)、解析方式和内容编码，生成DOM树
         soup = BeautifulSoup(content, 'html.parser', from_encoding='utf-8')
         # 页面中出现的新的URL和数据
         new_urls = self._get_new_urls(url, soup)
@@ -65,15 +65,14 @@ class HtmlParser(object):
         # 将页面URL放入数据中
         data['url'] = url
 
+        # find()函数的使用文档：
+        # https://www.crummy.com/software/BeautifulSoup/bs4/doc.zh/#find-all
         # TODO 根据页面HTML格式修改数据提取方法
-        # TODO 百度百科页面格式已经发生变化
-        # <dd class="lemmaWgt-lemmaTitle-title"> <h1>Python</h1>
+        # 百度百科结构：<dd class="lemmaWgt-lemmaTitle-title"> <h1>Python</h1>
         # 提取标题
-        # TODO find()函数用法
-        title_node = soup.find('dd', class_='lemmaWgt-lemmaTitle-title') \
-            .find('h1')
+        title_node = soup.find('dd', class_='lemmaWgt-lemmaTitle-title').find('h1')
         data['title'] = title_node.get_text()
-        # <div class="lemma-summary">
+        # 百度百科结构：<div class="lemma-summary">
         # 提取摘要
         summary_node = soup.find('div', class_='lemma-summary')
         data['summary'] = summary_node.get_text()

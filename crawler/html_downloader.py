@@ -17,14 +17,14 @@ class HtmlDownloader(object):
         # 跳过空URL
         if url is None:
             return None
-
         # 获取页面内容
         # TODO 根据页面结构扩展页面获取方法
-        # TODO comment
+        # urllib2模块提供网页下载功能
         response = urllib2.urlopen(url)
         # 返回码200表示请求成功
         if response.getcode() != 200:
             return None
 
         # 返回页面内容
+        # read()返回网页的源码
         return response.read()
