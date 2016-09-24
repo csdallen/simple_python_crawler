@@ -21,7 +21,7 @@ class HtmlParser(object):
         # 跳过空页面
         if url is None or content is None:
             return
-        # TODO comment
+        # 设置要解析的内容、解析方式和内容编码
         soup = BeautifulSoup(content, 'html.parser', from_encoding='utf-8')
         # 页面中出现的新的URL和数据
         new_urls = self._get_new_urls(url, soup)
@@ -32,10 +32,11 @@ class HtmlParser(object):
     def _get_new_urls(self, url, soup):
         """
         获取URL页面中出现的新URL
-        :param url:
-        :param soup:
-        :return:
+        :param url:当前页面
+        :param soup:BeautifulSoup
+        :return:当前页面中出现的新URL的集合
         """
+
         # 存放新的URL的集合
         new_urls = set()
 
@@ -54,9 +55,9 @@ class HtmlParser(object):
     def _get_new_data(self, url, soup):
         """
         获取URL页面中出现的新数据
-        :param url:
-        :param soup:
-        :return:
+        :param url:当前页面
+        :param soup:BeautifulSoup
+        :return:页面中出现的新数据的集合
         """
 
         # 存放数据
@@ -68,6 +69,7 @@ class HtmlParser(object):
         # TODO 百度百科页面格式已经发生变化
         # <dd class="lemmaWgt-lemmaTitle-title"> <h1>Python</h1>
         # 提取标题
+        # TODO find()函数用法
         title_node = soup.find('dd', class_='lemmaWgt-lemmaTitle-title') \
             .find('h1')
         data['title'] = title_node.get_text()
