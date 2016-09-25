@@ -29,8 +29,12 @@ class HtmlOutputer(object):
         # 将数据输出到文件，完成后自动关闭文件
         with open('output.html', 'w') as f_out:
             # 写HTML开头
+            # 网页meta应声明为"UTF-8"，否则某些系统的浏览器默认按gbk编码读取
             f_out.write('''
                 <html>
+                <head>
+                <meta charset=""UTF-8"">
+                <head>
                 <body>
                 <table>
             ''')
